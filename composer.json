@@ -1,0 +1,17 @@
+{
+    "name": "openlab-at-city-tech/openlab-text-to-speech",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "OpenLab\\TextToSpeech\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Boone B Gorges",
+            "email": "boonebgorges@gmail.com"
+        }
+    ],
+    "require": {
+    }
+}

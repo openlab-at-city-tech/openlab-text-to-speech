@@ -1,0 +1,19 @@
+{
+	"name": "openlab-text-to-speech",
+	"version": "1.0.0",
+	"devDependencies": {
+		"@babel/preset-env": "^7.22.4",
+		"@babel/preset-react": "^7.22.3",
+		"@wordpress/eslint-plugin": "^17.3.0",
+		"@wordpress/scripts": "^26.19",
+    "@wordpress/i18n": "*",
+		"babel-loader": "^9.1.2"
+	},
+	"scripts": {
+		"build": "wp-scripts build assets/src/frontend.js",
+		"start": "wp-scripts start assets/src/frontend.js"
+	},
+	"dependencies": {
+    "easy-speech": "*"
+	}
+}
