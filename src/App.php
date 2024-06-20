@@ -56,7 +56,7 @@ class App {
 			$post_content = do_shortcode( $post_content );
 
 			// Remove the 'openlab-text-to-speech' elements before sending the content to the JS.
-			$post_content = preg_replace( '/<div class="openlab-text-to-speech".*?<\/div>/s', '', $post_content );
+			$post_content = preg_replace( '/<div class="openlab-text-to-speech".*?<\/div><!-- \/.openlab-text-to-speech -->/s', '', $post_content );
 			$post_content = wp_strip_all_tags( $post_content );
 
 			$script_data['postContent'] = $post_content;
@@ -139,7 +139,7 @@ class App {
 						<option value="">Select a voice</option>
 					</select>
 				</div>
-			</div>',
+			</div><!-- /.openlab-text-to-speech -->',
 			esc_attr( $atts['button_text'] )
 		);
 
