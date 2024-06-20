@@ -4,6 +4,8 @@ import EasySpeech from 'easy-speech'
 import languages from '@cospired/i18n-iso-languages'
 import countries from 'i18n-iso-countries'
 
+import './frontend.scss'
+
 const browserLanguages = new Set()
 let voices
 
@@ -14,10 +16,14 @@ document.body.onload = () => {
 	let isPlaying = false
 	let hasStarted = false
 
-	const playAudioEls = document.querySelectorAll( '.openlab-text-to-speech' )
+	const playAudioEls = document.querySelectorAll( '.openlab-text-to-speech-controls' )
 	if ( ! playAudioEls.length ) {
 		return
 	}
+
+	const detectedFeaturesEl = document.createElement( 'div' )
+	detectedFeaturesEl.classList.add( 'openlab-text-to-speech__detected-features' )
+	playAudioEls.forEach( el => el.appendChild( detectedFeaturesEl ) )
 
 	const esFlags = {
 		maxTimout: 5000,
@@ -32,7 +38,6 @@ document.body.onload = () => {
 
 			// For debug purposes, we append the detected features to the body
 			const detectedFeatures = EasySpeech.detect()
-			const detectedFeaturesEl = document.createElement( 'div' )
 
 			// Additional debug info.
 			detectedFeatures.userLang = userLang
@@ -44,9 +49,7 @@ document.body.onload = () => {
 
 			detectedFeatures.languages = languageNames
 
-			detectedFeaturesEl.classList.add( 'openlab-text-to-speech__detected-features' )
-			detectedFeaturesEl.innerHTML = `<pre>${ JSON.stringify( detectedFeatures, null, 2 ) }</pre>`
-			playAudioEls.forEach( el => el.appendChild( detectedFeaturesEl ) )
+//			detectedFeaturesEl.innerHTML = `<pre>${ JSON.stringify( detectedFeatures, null, 2 ) }</pre>`
 		} )
 		.catch( error => {
 			console.error( error )
@@ -63,7 +66,12 @@ document.body.onload = () => {
 
 		playAudioButton.addEventListener( 'click', onButtonClick )
 
-		el.appendChild( playAudioButton )
+		// Put inside of a div.openlab-text-to-speech-control element.
+		const control = document.createElement( 'div' )
+		control.classList.add( 'openlab-text-to-speech-control' )
+		control.appendChild( playAudioButton )
+
+		el.querySelector( '.openlab-text-to-speech-controls-container' ).appendChild( playAudioButton )
 
 		const languageSelector = el.querySelector( '.language-selector' )
 		if ( languageSelector ) {
@@ -120,9 +128,30 @@ document.body.onload = () => {
 	}
 
 	const onButtonClick = ( event ) => {
+		event.preventDefault()
+
 		const clickedButton = event.target
 
 		const voice = getSelectedVoice( clickedButton )
+
+		const speakArgs = {
+			text: openLabTextToSpeech.postContent,
+			voice,
+			end: () => {
+				hasStarted = false
+				isPlaying = false
+			},
+			pause: () => {
+				isPlaying = false
+			},
+			resume: () => {
+				isPlaying = true
+			},
+			start: () => {
+				hasStarted = true
+				isPlaying = true
+			},
+		}
 
 		if ( isPlaying ) {
 			if ( browserSupports( 'charIndex' ) ) {
@@ -133,32 +162,18 @@ document.body.onload = () => {
 
 			const newButtonText = browserSupports( 'charIndex' ) ? openLabTextToSpeechStrings.resumeAudio : openLabTextToSpeechStrings.playAudio
 
+			isPlaying = false
 			clickedButton.innerHTML = newButtonText
 		} else {
 			if ( ! hasStarted ) {
-				EasySpeech.speak( {
-					text: openLabTextToSpeech.postContent,
-					voice,
-					end: () => {
-						hasStarted = false
-						isPlaying = false
-					},
-					pause: () => {
-						isPlaying = false
-					},
-					resume: () => {
-						isPlaying = true
-					},
-					start: () => {
-						hasStarted = true
-						isPlaying = true
-					},
-				} )
+				EasySpeech.speak( speakArgs )
 			} else if ( browserSupports( 'charIndex' ) ) {
-				EasySpeech.pause()
+				EasySpeech.resume()
 			} else {
-				EasySpeech.cancel()
+				EasySpeech.speak( speakArgs )
 			}
+
+			hasStarted = true
 
 			const newButtonText = browserSupports( 'charIndex' ) ? openLabTextToSpeechStrings.pauseAudio : openLabTextToSpeechStrings.stopAudio
 
@@ -180,7 +195,7 @@ document.body.onload = () => {
 
 		const voicesList = voices.filter( voice => voice.lang === selectedLang )
 
-		const voiceSelector = languageSelector.closest( '.openlab-text-to-speech' ).querySelector( '.voice-selector' )
+		const voiceSelector = languageSelector.closest( '.openlab-text-to-speech-controls' ).querySelector( '.voice-selector' )
 		voiceSelector.innerHTML = ''
 
 		voicesList.forEach( voice => {
@@ -193,8 +208,8 @@ document.body.onload = () => {
 	}
 
 	const getSelectedVoice = button => {
-		const languageSelector = button.closest( '.openlab-text-to-speech' ).querySelector( '.language-selector' )
-		const voiceSelector = button.closest( '.openlab-text-to-speech' ).querySelector( '.voice-selector' )
+		const languageSelector = button.closest( '.openlab-text-to-speech-controls' ).querySelector( '.language-selector' )
+		const voiceSelector = button.closest( '.openlab-text-to-speech-controls' ).querySelector( '.voice-selector' )
 
 		const selectedLang = languageSelector.value
 		const selectedVoice = voiceSelector.value
@@ -214,9 +229,15 @@ document.body.onload = () => {
 	}
 
 	const debug = ( message ) => {
-		// Delete existing debug info.
-		document.querySelectorAll( '.openlab-text-to-speech__detected-features' ).forEach( el => el.remove() )
+		const detectectedFeaturesEls = document.querySelectorAll( '.openlab-text-to-speech__detected-features' )
 
+		// create an array from the NodeList
+		const detectectedFeaturesArray = Array.from( detectectedFeaturesEls )
 
+		detectectedFeaturesArray.forEach( el => {
+			// remove all children
+			el.innerHTML = ''
+			el.innerHTML = `<p>${ message }</p>`
+		} )
 	}
 }
