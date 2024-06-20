@@ -220,7 +220,10 @@ document.body.onload = () => {
 	const browserSupports = ( feature ) => {
 		switch ( feature ) {
 			case 'charIndex':
-				// @todo Identify specific browsers that support charIndex.
+				// iOS
+				if ( navigator.platform === 'iPhone' || navigator.platform === 'iPad' || navigator.platform === 'iPod' ) {
+					return true
+				}
 				return false
 
 			default:
