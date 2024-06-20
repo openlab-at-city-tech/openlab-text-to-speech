@@ -5,8 +5,8 @@
 		"@babel/preset-env": "^7.22.4",
 		"@babel/preset-react": "^7.22.3",
 		"@wordpress/eslint-plugin": "^17.3.0",
+		"@wordpress/i18n": "*",
 		"@wordpress/scripts": "^26.19",
-    "@wordpress/i18n": "*",
 		"babel-loader": "^9.1.2"
 	},
 	"scripts": {
@@ -14,6 +14,8 @@
 		"start": "wp-scripts start assets/src/frontend.js"
 	},
 	"dependencies": {
-    "easy-speech": "*"
+		"@cospired/i18n-iso-languages": "^4.2.0",
+		"easy-speech": "*",
+		"i18n-iso-countries": "^7.11.2"
 	}
 }

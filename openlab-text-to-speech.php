@@ -11,6 +11,10 @@ License: GPLv2 or later
 
 require __DIR__ . '/vendor/autoload.php';
 
+define( 'OPENLAB_TEXT_TO_SPEECH_VERSION', '1.0' );
+define( 'OPENLAB_TEXT_TO_SPEECH_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'OPENLAB_TEXT_TO_SPEECH_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
 /**
  * Loads plugin.
  */

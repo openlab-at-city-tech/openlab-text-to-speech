@@ -45,7 +45,7 @@ class App {
 			'openlab-text-to-speech',
 			plugins_url( 'build/frontend.js', __DIR__ ),
 			[],
-			filemtime( __DIR__ . '/build/frontend.js' ),
+			filemtime( OPENLAB_TEXT_TO_SPEECH_PLUGIN_DIR . '/build/frontend.js' ),
 			true
 		);
 
@@ -54,6 +54,9 @@ class App {
 		if ( is_singular() ) {
 			$post_content = apply_filters( 'the_content', get_queried_object()->post_content );
 			$post_content = do_shortcode( $post_content );
+
+			// Remove the 'openlab-text-to-speech' elements before sending the content to the JS.
+			$post_content = preg_replace( '/<div class="openlab-text-to-speech".*?<\/div>/s', '', $post_content );
 			$post_content = wp_strip_all_tags( $post_content );
 
 			$script_data['postContent'] = $post_content;
@@ -75,6 +78,7 @@ class App {
 				'playAudio'   => __( 'Play audio', 'openlab-text-to-speech' ),
 				'pauseAudio'  => __( 'Pause audio', 'openlab-text-to-speech' ),
 				'resumeAudio' => __( 'Resume audio', 'openlab-text-to-speech' ),
+				'stopAudio'   => __( 'Stop audio', 'openlab-text-to-speech' ),
 			]
 		);
 	}
