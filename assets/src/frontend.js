@@ -34,7 +34,10 @@ document.body.onload = () => {
 		.then( () => {
 			initVoices()
 
-			playAudioEls.forEach( el => initButton( el ) )
+			playAudioEls.forEach( el => {
+				initButton( el )
+				el.classList.remove( 'hidden' )
+			} )
 
 			// For debug purposes, we append the detected features to the body
 			const detectedFeatures = EasySpeech.detect()

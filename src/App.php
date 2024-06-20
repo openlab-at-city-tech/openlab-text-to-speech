@@ -141,7 +141,7 @@ class App {
 		);
 
 		$el = sprintf(
-			'<form class="openlab-text-to-speech-controls" data-button-text="%s">
+			'<form class="openlab-text-to-speech-controls hidden" data-button-text="%s">
 				<h2>%s</h2>
 				<div class="openlab-text-to-speech-controls-container">
 					<div class="openlab-text-to-speech-control">

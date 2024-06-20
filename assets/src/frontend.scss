@@ -6,6 +6,11 @@
 		font-size: 1.5rem;
 		margin-bottom: 16px;
 	}
+
+	&.hidden {
+		display: none;
+		visibility: hidden;
+	}
 }
 
 .openlab-text-to-speech-control {
