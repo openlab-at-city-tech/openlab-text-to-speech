@@ -140,6 +140,7 @@ document.body.onload = () => {
 		const speakArgs = {
 			text: openLabTextToSpeech.postContent,
 			voice,
+			rate: getSelectedRate( clickedButton ),
 			end: () => {
 				hasStarted = false
 				isPlaying = false
@@ -244,6 +245,12 @@ document.body.onload = () => {
 		const selectedVoice = voiceSelector.value
 
 		return voices.find( voice => voice.lang === selectedLang && voice.name === selectedVoice )
+	}
+
+	const getSelectedRate = button => {
+		const rateSelector = button.closest( '.openlab-text-to-speech-controls' ).querySelector( '.rate-selector' )
+
+		return parseFloat( rateSelector.value )
 	}
 
 	const browserSupports = ( feature ) => {

@@ -157,6 +157,11 @@ class App {
 							<option value="">%s</option>
 						</select>
 					</div>
+
+					<div class="openlab-text-to-speech-control">
+						<label for="rate-selector-%s">%s</label>
+						<input type="range" class="rate-selector" id="rate-selector-%s" min="0.5" max="2" step="0.1" value="1">
+					</div>
 				</div>
 			</form><!-- /.openlab-text-to-speech-controls -->',
 			esc_html__( 'Play audio', 'openlab-text-to-speech' ),
@@ -168,7 +173,10 @@ class App {
 			esc_attr( $instance_id ),
 			esc_attr__( 'Voice', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id ),
-			esc_attr__( 'All voices', 'openlab-text-to-speech' )
+			esc_attr__( 'All voices', 'openlab-text-to-speech' ),
+			esc_attr( $instance_id ),
+			esc_html__( 'Rate', 'openlab-text-to-speech' ),
+			esc_attr( $instance_id )
 		);
 
 		return $el;
