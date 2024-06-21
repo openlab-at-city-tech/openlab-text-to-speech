@@ -56,7 +56,7 @@ class App {
 			$post_content = do_shortcode( $post_content );
 
 			// Remove the 'openlab-text-to-speech-controls' element before sending the content to JS.
-			$post_content = preg_replace( '/<form class="openlab-text-to-speech-controls".*?<\/form><!-- \/.openlab-text-to-speech-controls -->/s', '', $post_content );
+			$post_content = preg_replace( '/<form class="openlab-text-to-speech-controls hidden"[^>]*>.*?<\/form><!-- \/.openlab-text-to-speech-controls -->/s', '', $post_content );
 			$post_content = wp_strip_all_tags( $post_content );
 
 			$script_data['postContent'] = $post_content;
