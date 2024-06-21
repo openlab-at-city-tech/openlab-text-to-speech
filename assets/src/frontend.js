@@ -189,8 +189,34 @@ document.body.onload = () => {
 		voices = EasySpeech.voices()
 
 		voices.forEach( voice => {
-			browserLanguages.add( voice.lang )
+			if ( voiceIsSupported( voice ) ) {
+				browserLanguages.add( voice.lang )
+			}
 		} )
+	}
+
+	const getPlatform = () => {
+		const platform  = navigator.platform.toLowerCase();
+		if ( platform.includes('win') ) {
+			return 'Windows';
+		} else if ( platform.includes( 'mac' ) ) {
+			return 'macOS';
+		} else if ( platform.includes( 'linux' ) ) {
+			return 'Linux';
+		} else if ( platform.includes( 'iphone' ) || platform.includes( 'ipad' ) ) {
+			return 'iOS';
+		}
+
+		const userAgent = navigator.userAgent.toLowerCase();
+		if ( userAgent.includes( 'android' ) ) {
+			return 'Android';
+		}
+
+		return 'Unknown';
+	}
+
+	const voiceIsSupported = voice => {
+		return true
 	}
 
 	const populateVoices = languageSelector => {
