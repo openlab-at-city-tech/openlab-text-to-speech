@@ -6,7 +6,7 @@
 		"@babel/preset-react": "^7.22.3",
 		"@wordpress/eslint-plugin": "^17.3.0",
 		"@wordpress/i18n": "*",
-		"@wordpress/scripts": "^26.19",
+		"@wordpress/scripts": "^28.3.0",
 		"babel-loader": "^9.1.2"
 	},
 	"scripts": {
