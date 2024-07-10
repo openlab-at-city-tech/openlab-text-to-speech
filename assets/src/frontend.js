@@ -61,6 +61,13 @@ document.body.onload = () => {
 	const initButton = el => {
 		const { buttonText } = el.dataset
 
+		const defaultLanguage = getDefaultLanguage()
+
+		// No English found. Hide the controls.
+		if ( ! defaultLanguage ) {
+			return
+		}
+
 		const playAudioButton = document.createElement( 'button' )
 		playAudioButton.classList.add( 'openlab-text-to-speech__button' )
 		playAudioButton.ariaLabel = buttonText
@@ -77,8 +84,8 @@ document.body.onload = () => {
 		el.querySelector( '.openlab-text-to-speech-controls-container' ).appendChild( playAudioButton )
 
 		const languageSelector = el.querySelector( '.language-selector' )
+
 		if ( languageSelector ) {
-			const defaultLanguage = getDefaultLanguage()
 
 			Array.from( browserLanguages ).forEach( lang => {
 				const option = document.createElement( 'option' )
@@ -99,6 +106,22 @@ document.body.onload = () => {
 	}
 
 	const getDefaultLanguage = () => {
+		// For the time being, we will use heuristics to identify English.
+		// If no English is found, we will return null.
+
+		const englishLanguages = new Set( [ 'en-US', 'en', 'eng-USA-default' ] )
+
+		// See whether browserLanguages has any of the English languages.
+		const englishLanguage = Array.from( browserLanguages ).find( lang => englishLanguages.has( lang ) )
+
+		if ( englishLanguage ) {
+			return englishLanguage
+		}
+
+		return null
+
+		// What follows is the original code that attempted to detect the user's language.
+
 		// Format 'en'.
 		// Firefox on Arch
 		if ( browserLanguages.has( userLang ) ) {

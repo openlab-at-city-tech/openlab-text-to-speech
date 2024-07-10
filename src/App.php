@@ -144,7 +144,7 @@ class App {
 			'<form class="openlab-text-to-speech-controls hidden" data-button-text="%s">
 				<h2>%s</h2>
 				<div class="openlab-text-to-speech-controls-container">
-					<div class="openlab-text-to-speech-control">
+					<div class="openlab-text-to-speech-control hidden">
 						<label for="language-selector-%s">%s</label>
 						<select class="language-selector" id="language-selector-%s">
 							<option value="">%s</option>
