@@ -246,7 +246,32 @@ document.body.onload = () => {
 	const populateVoices = languageSelector => {
 		const selectedLang = languageSelector.value
 
-		const voicesList = voices.filter( voice => voice.lang === selectedLang )
+		const excludedVoices = [
+			'English (America)+Andy',
+			'Albert',
+			'Bad News',
+			'Bahh',
+			'Bells',
+			'Boing',
+			'Bubbles',
+			'Cellos',
+			'Good News',
+			'Jester',
+			'Organ',
+			'Trinoids',
+			'Whisper',
+			'Wobble',
+			'Zarvox',
+			'Google US English',
+		]
+
+		const voicesList = voices.filter( voice => {
+			if ( excludedVoices.includes( voice.name ) ) {
+				return false
+			}
+
+			return voice.lang === selectedLang
+		} )
 
 		const voiceSelector = languageSelector.closest( '.openlab-text-to-speech-controls' ).querySelector( '.voice-selector' )
 		voiceSelector.innerHTML = ''
