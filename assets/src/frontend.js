@@ -179,6 +179,7 @@ document.body.onload = () => {
 				isPlaying = true
 			},
 		}
+		console.log( speakArgs.rate )
 
 		if ( isPlaying ) {
 			if ( browserSupports( 'charIndex' ) ) {
