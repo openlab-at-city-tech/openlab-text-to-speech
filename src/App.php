@@ -143,6 +143,7 @@ class App {
 		$el = sprintf(
 			'<form class="openlab-text-to-speech-controls hidden" data-button-text="%s">
 				<h2>%s</h2>
+				<p>%s</p>
 				<div class="openlab-text-to-speech-controls-container">
 					<div class="openlab-text-to-speech-control hidden">
 						<label for="language-selector-%s">%s</label>
@@ -166,6 +167,7 @@ class App {
 			</form><!-- /.openlab-text-to-speech-controls -->',
 			esc_html__( 'Play audio', 'openlab-text-to-speech' ),
 			esc_attr( $atts['button_text'] ),
+			esc_html__( 'This player is in beta. Available voices may vary based on your browser and device. It does not use AI.', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id ),
 			esc_attr__( 'Language', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id ),
