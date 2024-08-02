@@ -143,7 +143,7 @@ class App {
 		$el = sprintf(
 			'<form class="openlab-text-to-speech-controls hidden" data-button-text="%s">
 				<h2>%s</h2>
-				<p>%s</p>
+				<p class="beta-notice">%s</p>
 				<div class="openlab-text-to-speech-controls-container">
 					<div class="openlab-text-to-speech-control hidden">
 						<label for="language-selector-%s">%s</label>
