@@ -3,7 +3,7 @@
         'name' => 'openlab-at-city-tech/openlab-text-to-speech',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '1c66d79cf231583ed05614b698a1d357478b27fe',
+        'reference' => 'bf5755b8803b0b85664d0a3591869ccfebceabba',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'openlab-at-city-tech/openlab-text-to-speech' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '1c66d79cf231583ed05614b698a1d357478b27fe',
+            'reference' => 'bf5755b8803b0b85664d0a3591869ccfebceabba',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
