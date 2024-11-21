@@ -1,6 +1,28 @@
+$grey: #e5e5e5;
+$dark-grey: #6f6f6f;
+$border: 1px solid $grey;
+$border-radius: 5px;
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('../fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 100 900;
+  src: url('../fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
 .openlab-text-to-speech-controls {
-	border: 1px solid #ccc;
-	padding: 16px;
+	border: $border;
+	border-radius: $border-radius;
+	font-family: 'Open Sans', sans-serif !important;
+	position: relative;
+	overflow: visible;
 
 	h2 {
 		font-size: 1.5rem;
@@ -12,8 +34,102 @@
 		visibility: hidden;
 	}
 
+	&.has-open-drawer {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
 	.beta-notice {
 		font-size: .9em;
+	}
+}
+
+.openlab-tts-primary-controls {
+	background: $grey;
+	display: flex;
+	height: 54px;
+	align-items: center;
+	justify-content: space-between;
+
+	button {
+		// Zero out theme and user stylesheet button styles.
+		background: none;
+		border: none;
+		color: inherit;
+		cursor: pointer;
+		font-size: inherit;
+		font-weight: normal;
+		height: 40px;
+		padding: 0;
+
+		&:hover {
+			background: none;
+			color: inherit;
+		}
+
+		&.openlab-tts-play {
+			padding: 8px 46px 8px 16px;
+			position: relative;
+			font-size: 22px;
+			line-height: 22px;
+
+			&:after {
+				position: absolute;
+				content: '';
+				display: inline-block;
+				width: 40px;
+				height: 40px;
+				background-image: url('../images/speaker.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 25px auto;
+				right: 2px;
+				top: 2px;
+			}
+
+			&:hover:after {
+				background-image: url('../images/speaker-blue.png');
+			}
+		}
+
+		&.openlab-tts-drawer-toggle {
+			padding: 8px;
+			margin-right: 8px;
+			&:after {
+				content: '';
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background-image: url('../images/gear.png');
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+.openlab-tts-drawer {
+	display: none;
+	visibility: hidden;
+
+	background: white;
+	border-left: $border;
+	border-right: $border;
+	border-bottom: $border;
+	border-radius: 0 0 $border-radius $border-radius;
+	padding: 24px 16px;
+	width: 100%;
+
+	position: absolute;
+	top: 100%;
+}
+
+.has-open-drawer {
+	.openlab-tts-drawer {
+		display: block;
+		visibility: visible;
 	}
 }
 
@@ -42,5 +158,40 @@
 	&.hidden {
 		display: none;
 		visibility: hidden;
+	}
+
+	button.rate-selector-incrementor {
+		// Zero out button styles.
+		background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 20px 20px;
+		border: none;
+		color: inherit;
+		cursor: pointer;
+		font-size: inherit;
+		font-weight: normal;
+		height: 20px;
+		width: 20px;
+
+		&.rate-selector-incrementor-down {
+			background-image: url( '../images/minus.png' );
+
+			&:hover:not(:disabled) {
+				background-image: url( '../images/minus-blue.png' );
+			}
+		}
+
+		&.rate-selector-incrementor-up {
+			background-image: url( '../images/plus.png' );
+
+			&:hover:not(:disabled) {
+				background-image: url( '../images/plus-blue.png' );
+			}
+		}
+
+		&:disabled {
+			opacity: 0.5;
+		}
 	}
 }
