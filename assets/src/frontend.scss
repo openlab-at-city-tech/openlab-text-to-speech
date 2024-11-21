@@ -171,15 +171,6 @@ $border-radius: 5px;
 		max-width: 400px;
 	}
 
-	@media (max-width: 600px) {
-		align-items: flex-start;
-		flex-direction: column;
-
-		label {
-			flex: 1;
-		}
-	}
-
 	&.hidden {
 		display: none;
 		visibility: hidden;
@@ -187,6 +178,10 @@ $border-radius: 5px;
 
 	&.openlab-text-to-speech-control-info-message {
 		font-size: 16px;
+	}
+
+	&.openlab-text-to-speech-control-rate-selector {
+		display: flex;
 	}
 
 	.rate-selector-value {

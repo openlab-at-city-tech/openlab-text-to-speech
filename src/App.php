@@ -214,7 +214,7 @@ class App {
 							%s
 						</div>
 
-						<div class="openlab-text-to-speech-control">
+						<div class="openlab-text-to-speech-control openlab-text-to-speech-control-rate-selector">
 							%s
 						</div>
 
