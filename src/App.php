@@ -184,7 +184,7 @@ class App {
 				<span class="screen-reader-text">%s</span>
 			</button>
 
-			<span id="rate-selector-value-%s" class="rate-selector-value" aria-labelledby="rate-selector-label" aria-live="polite" role="status">1.0x</span>
+			<span id="rate-selector-value-%s" class="rate-selector-value" aria-labelledby="rate-selector-label" aria-live="polite" role="status">1.0X</span>
 
 			<button class="rate-selector-incrementor rate-selector-incrementor-up" aria-controls="rate-selector-value-%s">
 				<span class="screen-reader-text">%s</span>
@@ -217,7 +217,7 @@ class App {
 						%s
 					</div>
 
-					<div class="openlab-text-to-speech-control class="openlab-text-to-speech-control-info-message">
+					<div class="openlab-text-to-speech-control openlab-text-to-speech-control-info-message">
 						%s
 					</div>
 				</div>

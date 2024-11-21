@@ -53,7 +53,7 @@ document.body.onload = () => {
 			rateSelector.value = newRateValueRounded
 
 			// translators: %sx is the rate of speech. For example, 1x, 2x, etc.
-			const newText = sprintf( __( '%sx', 'openlab-text-to-speech' ), newRateValueRounded.toFixed( 1 ) )
+			const newText = sprintf( __( '%sX', 'openlab-text-to-speech' ), newRateValueRounded.toFixed( 1 ) )
 			currentControl.querySelector( '.rate-selector-value' ).innerHTML = newText
 
 			// Refresh button status. Bounds are 0.5 to 2.
@@ -219,6 +219,7 @@ document.body.onload = () => {
 			}
 
 			isPlaying = false
+			clickedButton.classList.remove( 'is-playing' )
 		} else {
 			if ( ! hasStarted ) {
 				EasySpeech.speak( speakArgs )
@@ -229,6 +230,7 @@ document.body.onload = () => {
 			}
 
 			hasStarted = true
+			clickedButton.classList.add( 'is-playing' )
 		}
 	}
 
