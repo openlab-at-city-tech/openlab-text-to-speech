@@ -140,45 +140,94 @@ class App {
 			$atts
 		);
 
-		$el = sprintf(
-			'<form class="openlab-text-to-speech-controls hidden" data-button-text="%s">
-				<h2>%s</h2>
-				<p class="beta-notice">%s</p>
-				<div class="openlab-text-to-speech-controls-container">
-					<div class="openlab-text-to-speech-control hidden">
-						<label for="language-selector-%s">%s</label>
-						<select class="language-selector" id="language-selector-%s">
-							<option value="">%s</option>
-						</select>
-					</div>
+		$primary_controls = sprintf(
+			'<div class="openlab-tts-primary-controls">
+				<button class="openlab-tts-play">
+					%s
+				</button>
 
-					<div class="openlab-text-to-speech-control">
-						<label for="voice-selector-%s">%s</label>
-						<select class="voice-selector" id="voice-selector-%s">
-							<option value="">%s</option>
-						</select>
-					</div>
+				<button class="openlab-tts-drawer-toggle" aria-controls="openlab-tts-drawer-%s">
+					<span class="screen-reader-text">%s</span>
+				</button>
+			</div>',
+			esc_html__( 'Listen', 'openlab-text-to-speech' ),
+			esc_attr( $instance_id ),
+			esc_html__( 'Settings', 'openlab-text-to-speech' )
+		);
 
-					<div class="openlab-text-to-speech-control">
-						<label for="rate-selector-%s">%s</label>
-						<input type="range" class="rate-selector" id="rate-selector-%s" min="0.5" max="2" step="0.1" value="1">
-					</div>
-				</div>
-			</form><!-- /.openlab-text-to-speech-controls -->',
-			esc_html__( 'Play audio', 'openlab-text-to-speech' ),
-			esc_attr( $atts['button_text'] ),
-			esc_html__( 'This player is in beta. Available voices may vary based on your browser and device. It does not use AI.', 'openlab-text-to-speech' ),
+		$language_selector_inner = sprintf(
+			'<label for="language-selector-%s">%s</label>
+			<select class="language-selector" id="language-selector-%s">
+				<option value="">%s</option>
+			</select>',
 			esc_attr( $instance_id ),
 			esc_attr__( 'Language', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id ),
-			esc_attr__( 'All languages', 'openlab-text-to-speech' ),
+			esc_attr__( 'All languages', 'openlab-text-to-speech' )
+		);
+
+		$voice_selector_inner = sprintf(
+			'<label for="voice-selector-%s" class="screen-reader-text">%s</label>
+			<select class="voice-selector" id="voice-selector-%s">
+				<option value="">%s</option>
+			</select>',
 			esc_attr( $instance_id ),
 			esc_attr__( 'Voice', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id ),
-			esc_attr__( 'All voices', 'openlab-text-to-speech' ),
+			esc_attr__( 'All voices', 'openlab-text-to-speech' )
+		);
+
+		$rate_selector_inner = sprintf(
+			'<span class="screen-reader-text" id="rate-selector-label">%s</span>
+
+			<button class="rate-selector-incrementor rate-selector-incrementor-down" aria-controls="rate-selector-value-%s">
+				<span class="screen-reader-text">%s</span>
+			</button>
+
+			<span id="rate-selector-value-%s" class="rate-selector-value" aria-labelledby="rate-selector-label" aria-live="polite" role="status">1.0X</span>
+
+			<button class="rate-selector-incrementor rate-selector-incrementor-up" aria-controls="rate-selector-value-%s">
+				<span class="screen-reader-text">%s</span>
+			</button>
+
+			<input type="hidden" id="rate-selector-%s" class="rate-selector" value="1.0">',
+			esc_attr__( 'Rate', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id ),
-			esc_html__( 'Rate', 'openlab-text-to-speech' ),
+			esc_attr__( 'Decrease rate', 'openlab-text-to-speech' ),
+			esc_attr( $instance_id ),
+			esc_attr( $instance_id ),
+			esc_attr__( 'Increase rate', 'openlab-text-to-speech' ),
 			esc_attr( $instance_id )
+		);
+
+		$el = sprintf(
+			'<form class="openlab-text-to-speech-controls hidden">
+				%s
+
+				<div class="openlab-tts-drawer" id="openlab-tts-drawer-%s" aria-hidden="true">
+					<div class="openlab-text-to-speech-control hidden">
+						%s
+					</div>
+
+					<div class="openlab-text-to-speech-control">
+						%s
+					</div>
+
+					<div class="openlab-text-to-speech-control">
+						%s
+					</div>
+
+					<div class="openlab-text-to-speech-control openlab-text-to-speech-control-info-message">
+						%s
+					</div>
+				</div>
+			</form><!-- /.openlab-text-to-speech-controls -->',
+			$primary_controls,
+			esc_attr( $instance_id ),
+			$language_selector_inner,
+			$voice_selector_inner,
+			$rate_selector_inner,
+			esc_html__( 'Available voices may vary based on your browser and device. Speech does not use AI.', 'openlab-text-to-speech' )
 		);
 
 		return $el;

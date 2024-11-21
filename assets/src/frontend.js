@@ -4,6 +4,8 @@ import EasySpeech from 'easy-speech'
 import languages from '@cospired/i18n-iso-languages'
 import countries from 'i18n-iso-countries'
 
+import { sprintf, __ } from '@wordpress/i18n'
+
 import './frontend.scss'
 
 const browserLanguages = new Set()
@@ -24,6 +26,48 @@ document.body.onload = () => {
 	const detectedFeaturesEl = document.createElement( 'div' )
 	detectedFeaturesEl.classList.add( 'openlab-text-to-speech__detected-features' )
 	playAudioEls.forEach( el => el.appendChild( detectedFeaturesEl ) )
+
+	const drawerToggles = document.querySelectorAll( '.openlab-tts-drawer-toggle' )
+	drawerToggles.forEach( el => {
+		el.addEventListener( 'click', ( event ) => {
+			event.preventDefault()
+			const drawerControls = el.closest( '.openlab-text-to-speech-controls' )
+			drawerControls.classList.toggle( 'has-open-drawer' )
+		} )
+	} )
+
+	const rateSelectorIncrementors = document.querySelectorAll( '.rate-selector-incrementor' )
+	rateSelectorIncrementors.forEach( el => {
+		el.addEventListener( 'click', ( event ) => {
+			event.preventDefault()
+
+			const currentControl = el.closest( '.openlab-text-to-speech-controls' )
+			const rateSelector = currentControl.querySelector( '.rate-selector' )
+			const rate = parseFloat( rateSelector.value )
+
+			const selectorType = el.classList.contains( 'rate-selector-incrementor-down' ) ? 'down' : 'up'
+			const newRateValue = selectorType === 'down' ? rate - 0.1 : rate + 0.1
+
+			const newRateValueRounded = Math.round( newRateValue * 10 ) / 10
+
+			rateSelector.value = newRateValueRounded
+
+			// translators: %sx is the rate of speech. For example, 1x, 2x, etc.
+			const newText = sprintf( __( '%sX', 'openlab-text-to-speech' ), newRateValueRounded.toFixed( 1 ) )
+			currentControl.querySelector( '.rate-selector-value' ).innerHTML = newText
+
+			// Refresh button status. Bounds are 0.5 to 2.
+			if ( newRateValueRounded <= 0.5 ) {
+				currentControl.querySelector( '.rate-selector-incrementor-down' ).disabled = true
+			} else if ( newRateValueRounded >= 2 ) {
+				currentControl.querySelector( '.rate-selector-incrementor-up' ).disabled = true
+			} else {
+				currentControl.querySelector( '.rate-selector-incrementor-down' ).disabled = false
+				currentControl.querySelector( '.rate-selector-incrementor-up' ).disabled = false
+			}
+
+		} )
+	} )
 
 	const esFlags = {
 		maxTimout: 5000,
@@ -59,8 +103,6 @@ document.body.onload = () => {
 		} )
 
 	const initButton = el => {
-		const { buttonText } = el.dataset
-
 		const defaultLanguage = getDefaultLanguage()
 
 		// No English found. Hide the controls.
@@ -68,20 +110,9 @@ document.body.onload = () => {
 			return
 		}
 
-		const playAudioButton = document.createElement( 'button' )
-		playAudioButton.classList.add( 'openlab-text-to-speech__button' )
-		playAudioButton.ariaLabel = buttonText
-		playAudioButton.innerHTML = buttonText
-		playAudioButton.ariaHidden = true
+		const playAudioButton = el.querySelector( '.openlab-tts-play' )
 
 		playAudioButton.addEventListener( 'click', onButtonClick )
-
-		// Put inside of a div.openlab-text-to-speech-control element.
-		const control = document.createElement( 'div' )
-		control.classList.add( 'openlab-text-to-speech-control' )
-		control.appendChild( playAudioButton )
-
-		el.querySelector( '.openlab-text-to-speech-controls-container' ).appendChild( playAudioButton )
 
 		const languageSelector = el.querySelector( '.language-selector' )
 
@@ -188,10 +219,8 @@ document.body.onload = () => {
 				EasySpeech.cancel()
 			}
 
-			const newButtonText = browserSupports( 'charIndex' ) ? openLabTextToSpeechStrings.resumeAudio : openLabTextToSpeechStrings.playAudio
-
 			isPlaying = false
-			clickedButton.innerHTML = newButtonText
+			clickedButton.classList.remove( 'is-playing' )
 		} else {
 			if ( ! hasStarted ) {
 				EasySpeech.speak( speakArgs )
@@ -202,10 +231,7 @@ document.body.onload = () => {
 			}
 
 			hasStarted = true
-
-			const newButtonText = browserSupports( 'charIndex' ) ? openLabTextToSpeechStrings.pauseAudio : openLabTextToSpeechStrings.stopAudio
-
-			clickedButton.innerHTML = newButtonText
+			clickedButton.classList.add( 'is-playing' )
 		}
 	}
 
