@@ -139,11 +139,14 @@ $border-radius: 5px;
 	border-right: $border;
 	border-bottom: $border;
 	border-radius: 0 0 $border-radius $border-radius;
-	padding: 24px 16px;
 	width: 100%;
 
 	position: absolute;
 	top: 100%;
+
+	.openlab-tts-drawer-inner {
+		padding: 24px 16px;
+	}
 }
 
 .has-open-drawer {
