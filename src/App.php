@@ -204,7 +204,7 @@ class App {
 			'<form class="openlab-text-to-speech-controls hidden">
 				%s
 
-				<div class="openlab-tts-drawer" id="openlab-tts-drawer-%s" aria-hidden="true">
+				<div class="openlab-tts-drawer" id="openlab-tts-drawer-%s" aria-expanded="false">
 					<div class="openlab-text-to-speech-control hidden">
 						%s
 					</div>

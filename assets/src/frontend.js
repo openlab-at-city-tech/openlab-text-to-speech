@@ -33,6 +33,7 @@ document.body.onload = () => {
 			event.preventDefault()
 			const drawerControls = el.closest( '.openlab-text-to-speech-controls' )
 			drawerControls.classList.toggle( 'has-open-drawer' )
+			drawerControls.querySelector( '.openlab-tts-drawer' ).setAttribute( 'aria-expanded', drawerControls.classList.contains( 'has-open-drawer' ) )
 		} )
 	} )
 
