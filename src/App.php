@@ -204,21 +204,23 @@ class App {
 			'<form class="openlab-text-to-speech-controls hidden">
 				%s
 
-				<div class="openlab-tts-drawer" id="openlab-tts-drawer-%s" aria-hidden="true">
-					<div class="openlab-text-to-speech-control hidden">
-						%s
-					</div>
+				<div class="openlab-tts-drawer" id="openlab-tts-drawer-%s" aria-expanded="false">
+					<div class="openlab-tts-drawer-inner">
+						<div class="openlab-text-to-speech-control hidden">
+							%s
+						</div>
 
-					<div class="openlab-text-to-speech-control">
-						%s
-					</div>
+						<div class="openlab-text-to-speech-control">
+							%s
+						</div>
 
-					<div class="openlab-text-to-speech-control">
-						%s
-					</div>
+						<div class="openlab-text-to-speech-control openlab-text-to-speech-control-rate-selector">
+							%s
+						</div>
 
-					<div class="openlab-text-to-speech-control openlab-text-to-speech-control-info-message">
-						%s
+						<div class="openlab-text-to-speech-control openlab-text-to-speech-control-info-message">
+							%s
+						</div>
 					</div>
 				</div>
 			</form><!-- /.openlab-text-to-speech-controls -->',

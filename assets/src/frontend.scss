@@ -29,6 +29,29 @@ $border-radius: 5px;
 		margin-bottom: 16px;
 	}
 
+	button {
+		// Zero out theme and user stylesheet button styles.
+		background-color: transparent;
+		background-image: none;
+		border: none;
+		color: inherit;
+		cursor: pointer;
+		font-size: inherit;
+		font-weight: normal;
+		line-height: 1em;
+		padding: 0;
+		min-width: 0;
+		text-transform: none;
+		font-family: 'Open Sans', sans-serif !important;
+
+		&:hover {
+			background-color: transparent;
+			background-image: none;
+			color: inherit;
+			box-shadow: none;
+		}
+	}
+
 	&.hidden {
 		display: none;
 		visibility: hidden;
@@ -52,20 +75,7 @@ $border-radius: 5px;
 	justify-content: space-between;
 
 	button {
-		// Zero out theme and user stylesheet button styles.
-		background: none;
-		border: none;
-		color: inherit;
-		cursor: pointer;
-		font-size: inherit;
-		font-weight: normal;
 		height: 40px;
-		padding: 0;
-
-		&:hover {
-			background: none;
-			color: inherit;
-		}
 
 		&.openlab-tts-play {
 			padding: 8px 46px 8px 16px;
@@ -79,25 +89,25 @@ $border-radius: 5px;
 				display: inline-block;
 				width: 40px;
 				height: 40px;
-				background-image: url('../images/speaker.png');
+				background-image: url('../images/speaker.svg');
 				background-position: center;
 				background-repeat: no-repeat;
 				background-size: 25px auto;
 				right: 2px;
-				top: 2px;
+				top: 4px;
 			}
 
 			&:hover:after {
-				background-image: url('../images/speaker-blue.png');
+				background-image: url('../images/speaker-blue.svg');
 			}
 
 			&.is-playing:after {
-				background-image: url('../images/speaker-blue.png');
+				background-image: url('../images/speaker-blue.svg');
 			}
 
 			&.is-playing:hover {
 				&:after {
-					background-image: url('../images/speaker-mute.png');
+					background-image: url('../images/speaker-mute.svg');
 				}
 			}
 		}
@@ -108,13 +118,17 @@ $border-radius: 5px;
 			&:after {
 				content: '';
 				display: inline-block;
-				width: 20px;
-				height: 20px;
-				background-image: url('../images/gear.png');
-				background-position: center;
+				width: 40px;
+				height: 40px;
+				margin-top: -5px;
+				background-image: url('../images/gear.svg');
+				background-position: top center;
 				background-repeat: no-repeat;
-				background-size: contain;
-				vertical-align: middle;
+				background-size: 40px 40px;
+			}
+
+			&:hover:after {
+				background-image: url('../images/gear-blue.svg');
 			}
 		}
 	}
@@ -129,11 +143,14 @@ $border-radius: 5px;
 	border-right: $border;
 	border-bottom: $border;
 	border-radius: 0 0 $border-radius $border-radius;
-	padding: 24px 16px;
 	width: 100%;
 
 	position: absolute;
 	top: 100%;
+
+	.openlab-tts-drawer-inner {
+		padding: 24px 16px;
+	}
 }
 
 .has-open-drawer {
@@ -155,16 +172,7 @@ $border-radius: 5px;
 
 	select {
 		flex: 1;
-		max-width: 400px;
-	}
-
-	@media (max-width: 600px) {
-		align-items: flex-start;
-		flex-direction: column;
-
-		label {
-			flex: 1;
-		}
+		max-width: 80%;
 	}
 
 	&.hidden {
@@ -173,14 +181,19 @@ $border-radius: 5px;
 	}
 
 	&.openlab-text-to-speech-control-info-message {
-		font-size: 16px;
+		font-size: .8em;
+		line-height: 1.4em;
+	}
+
+	&.openlab-text-to-speech-control-rate-selector {
+		display: flex;
 	}
 
 	.rate-selector-value {
 		display: inline-block;
-		font-size: 22px;
-		margin-left: 16px;
-		margin-right: 16px;
+		font-size: .8em;
+		margin-left: .5em;
+		margin-right: .5em;
 	}
 
 	button.rate-selector-incrementor {
@@ -198,18 +211,18 @@ $border-radius: 5px;
 		width: 20px;
 
 		&.rate-selector-incrementor-down {
-			background-image: url( '../images/minus.png' );
+			background-image: url( '../images/minus.svg' );
 
 			&:hover:not(:disabled) {
-				background-image: url( '../images/minus-blue.png' );
+				background-image: url( '../images/minus-blue.svg' );
 			}
 		}
 
 		&.rate-selector-incrementor-up {
-			background-image: url( '../images/plus.png' );
+			background-image: url( '../images/plus.svg' );
 
 			&:hover:not(:disabled) {
-				background-image: url( '../images/plus-blue.png' );
+				background-image: url( '../images/plus-blue.svg' );
 			}
 		}
 
