@@ -168,7 +168,7 @@ $border-radius: 5px;
 
 	select {
 		flex: 1;
-		max-width: 400px;
+		max-width: 80%;
 	}
 
 	&.hidden {
@@ -177,7 +177,8 @@ $border-radius: 5px;
 	}
 
 	&.openlab-text-to-speech-control-info-message {
-		font-size: 16px;
+		font-size: .8em;
+		line-height: 1.4em;
 	}
 
 	&.openlab-text-to-speech-control-rate-selector {
@@ -186,9 +187,9 @@ $border-radius: 5px;
 
 	.rate-selector-value {
 		display: inline-block;
-		font-size: 22px;
-		margin-left: 16px;
-		margin-right: 16px;
+		font-size: .8em;
+		margin-left: .5em;
+		margin-right: .5em;
 	}
 
 	button.rate-selector-incrementor {
