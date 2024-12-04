@@ -89,25 +89,25 @@ $border-radius: 5px;
 				display: inline-block;
 				width: 40px;
 				height: 40px;
-				background-image: url('../images/speaker.png');
+				background-image: url('../images/speaker.svg');
 				background-position: center;
 				background-repeat: no-repeat;
 				background-size: 25px auto;
 				right: 2px;
-				top: 2px;
+				top: 4px;
 			}
 
 			&:hover:after {
-				background-image: url('../images/speaker-blue.png');
+				background-image: url('../images/speaker-blue.svg');
 			}
 
 			&.is-playing:after {
-				background-image: url('../images/speaker-blue.png');
+				background-image: url('../images/speaker-blue.svg');
 			}
 
 			&.is-playing:hover {
 				&:after {
-					background-image: url('../images/speaker-mute.png');
+					background-image: url('../images/speaker-mute.svg');
 				}
 			}
 		}
@@ -118,13 +118,13 @@ $border-radius: 5px;
 			&:after {
 				content: '';
 				display: inline-block;
-				width: 20px;
-				height: 20px;
-				background-image: url('../images/gear.png');
-				background-position: center;
+				width: 40px;
+				height: 40px;
+				margin-top: -5px;
+				background-image: url('../images/gear.svg');
+				background-position: top center;
 				background-repeat: no-repeat;
-				background-size: contain;
-				vertical-align: middle;
+				background-size: 40px 40px;
 			}
 		}
 	}
