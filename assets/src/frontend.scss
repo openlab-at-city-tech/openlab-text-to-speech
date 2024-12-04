@@ -206,18 +206,18 @@ $border-radius: 5px;
 		width: 20px;
 
 		&.rate-selector-incrementor-down {
-			background-image: url( '../images/minus.png' );
+			background-image: url( '../images/minus.svg' );
 
 			&:hover:not(:disabled) {
-				background-image: url( '../images/minus-blue.png' );
+				background-image: url( '../images/minus-blue.svg' );
 			}
 		}
 
 		&.rate-selector-incrementor-up {
-			background-image: url( '../images/plus.png' );
+			background-image: url( '../images/plus.svg' );
 
 			&:hover:not(:disabled) {
-				background-image: url( '../images/plus-blue.png' );
+				background-image: url( '../images/plus-blue.svg' );
 			}
 		}
 
