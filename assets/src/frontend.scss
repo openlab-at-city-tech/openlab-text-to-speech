@@ -21,6 +21,7 @@ $border-radius: 5px;
 	border: $border;
 	border-radius: $border-radius;
 	font-family: 'Open Sans', sans-serif !important;
+	margin-bottom: 24px;
 	position: relative;
 	overflow: visible;
 
@@ -45,6 +46,14 @@ $border-radius: 5px;
 		font-family: 'Open Sans', sans-serif !important;
 
 		&:hover {
+			background-color: transparent;
+			background-image: none;
+			color: inherit;
+			box-shadow: none;
+		}
+
+		&:focus,
+		&:active {
 			background-color: transparent;
 			background-image: none;
 			color: inherit;
