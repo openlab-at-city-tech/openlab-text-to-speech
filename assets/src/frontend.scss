@@ -87,9 +87,9 @@ $border-radius: 5px;
 		height: 40px;
 
 		&.openlab-tts-play {
+			font-size: 1em;
 			padding: 8px 46px 8px 16px;
 			position: relative;
-			font-size: 22px;
 			line-height: 22px;
 
 			&:after {
@@ -101,7 +101,7 @@ $border-radius: 5px;
 				background-image: url('../images/speaker.svg');
 				background-position: center;
 				background-repeat: no-repeat;
-				background-size: 25px auto;
+				background-size: 22px auto;
 				right: 2px;
 				top: 4px;
 			}
@@ -127,13 +127,13 @@ $border-radius: 5px;
 			&:after {
 				content: '';
 				display: inline-block;
-				width: 40px;
-				height: 40px;
-				margin-top: -5px;
+				width: 32px;
+				height: 32px;
+				margin-top: -3px;
 				background-image: url('../images/gear.svg');
 				background-position: top center;
 				background-repeat: no-repeat;
-				background-size: 40px 40px;
+				background-size: 34px 34px;
 			}
 
 			&:hover:after {
