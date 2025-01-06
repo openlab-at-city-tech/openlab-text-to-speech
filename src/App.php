@@ -44,7 +44,7 @@ class App {
 		wp_register_script(
 			'openlab-text-to-speech',
 			plugins_url( 'build/frontend.js', __DIR__ ),
-			[],
+			[ 'wp-i18n' ],
 			filemtime( OPENLAB_TEXT_TO_SPEECH_PLUGIN_DIR . '/build/frontend.js' ),
 			true
 		);
